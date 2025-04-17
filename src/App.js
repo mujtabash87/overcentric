@@ -1,26 +1,31 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-import Home from './pages/Home';
-import About from './pages/About';
-import Trails from './pages/Trails';
-import Trail from './pages/Trail';
-import SignIn from './pages/SignIn';
-import Profile from './pages/Profile';
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Trails from "./pages/Trails";
+import Trail from "./pages/Trail";
+import SignIn from "./pages/SignIn";
+import Profile from "./pages/Profile";
+import overcentric from "overcentric";
 
 function App() {
   React.useEffect(() => {
     // Init overcentric with your project ID from environment variable here
+
+    overcentric.init("5ed298d9-8163-455a-aa12-c0c337c0e826", {
+      context: "website",
+    });
     // use "process.env.REACT_APP_OVERCENTRIC_PROJECT_ID" to get the project id
   }, []);
 
   const handleThrowError = () => {
     const errors = [
-      'Test Error',
-      'Test Error 2',
-      'Test Error 3',
-      'Test Error 4'
-    ]
+      "Test Error",
+      "Test Error 2",
+      "Test Error 3",
+      "Test Error 4",
+    ];
 
     throw new Error(errors[Math.floor(Math.random() * errors.length)]);
   };
@@ -33,16 +38,27 @@ function App() {
             <div className="flex justify-between h-16">
               <div className="flex">
                 <div className="flex-shrink-0 flex items-center">
-                  <Link to="/" className="text-2xl font-bold text-green-600">TrailSeeker</Link>
+                  <Link to="/" className="text-2xl font-bold text-green-600">
+                    TrailSeeker
+                  </Link>
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                  <Link to="/" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                  <Link
+                    to="/"
+                    className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  >
                     Home
                   </Link>
-                  <Link to="/trails" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                  <Link
+                    to="/trails"
+                    className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  >
                     Trails
                   </Link>
-                  <Link to="/about" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                  <Link
+                    to="/about"
+                    className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  >
                     About
                   </Link>
                 </div>
@@ -54,23 +70,21 @@ function App() {
                 >
                   Throw Error
                 </button>
-                {
-                  localStorage.getItem('trailSeeker_userID') ? (
-                    <Link
-                      to="/profile"
-                      className="w-full flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700"
-                    >
-                      Profile
-                    </Link>
-                  ) : (
-                    <Link
-                      to="/signin"
-                      className="w-full flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700"
-                    >
-                      Sign in
-                    </Link>
-                  )
-                }
+                {localStorage.getItem("trailSeeker_userID") ? (
+                  <Link
+                    to="/profile"
+                    className="w-full flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700"
+                  >
+                    Profile
+                  </Link>
+                ) : (
+                  <Link
+                    to="/signin"
+                    className="w-full flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700"
+                  >
+                    Sign in
+                  </Link>
+                )}
               </div>
             </div>
           </nav>
@@ -78,9 +92,7 @@ function App() {
 
         <main>
           <Routes>
-            <Route path="/" element={
-              <Home />
-            } />
+            <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/trails" element={<Trails />} />
             <Route path="/signin" element={<SignIn />} />
@@ -93,7 +105,16 @@ function App() {
           <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
             <div className="mt-8 md:mt-0 md:order-1">
               <p className="text-center text-base text-gray-400">
-                &copy; 2025 TrailSeeker - <a href="https://overcentric.com" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:text-green-500">Overcentric</a> demo app. All rights reserved.
+                &copy; 2025 TrailSeeker -{" "}
+                <a
+                  href="https://overcentric.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-green-600 hover:text-green-500"
+                >
+                  Overcentric
+                </a>{" "}
+                demo app. All rights reserved.
               </p>
             </div>
           </div>
